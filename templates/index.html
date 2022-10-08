@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Talent Day Check-in</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="http://fonts.cdnfonts.com/css/cronus" rel="stylesheet">
+    <script type='text/javascript' src="index.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <img id="logo"
+        src="https://cdn.discordapp.com/attachments/1009265382722387999/1018259203795734538/DS3_fulltext_chevron_white.png"
+        alt="Talent Day Logo" class="logo">
+    <h1 id="title">Data Science Talent Day Check-in</h1>
+    <p id="description">Enter student's check in code here.</p>
+    <input type="text" id="code" placeholder="Code" onKeyDown="if(event.keyCode==13) check_code();">
+    <button id="checkin" onclick="check_code();">Check-in</button>
+    <div id="result">
+        <p id="result-text">No result yet</p>
+    </div>
+</body>
+
+</html>
