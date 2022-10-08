@@ -71,7 +71,7 @@ def sort_df(df):
     )
     df_soft_early = df.query(
         """
-        (ds3_member == "Yes" or ds3_member == "No, but I'd like to be!") and ucsd_ds == True
+        (ds3_member == "Yes" or ds3_member == "No, but I'd like to be!") and ucsd_ds == True and year != "Graduate Student"
         """
     )
     df_hard_early = df.query(
@@ -81,14 +81,14 @@ def sort_df(df):
     )
     df_regular = df.query(
         """
-        ucsd_ds == True and ds3_member == "No"
+        (ucsd_ds == True and ds3_member == "No") or (ucsd_ds == True and (ds3_member == "Yes" or ds3_member == "No, but I'd like to be!") and year == "Graduate Student")
         """
     )
     # Save dataframes
-    df_invalid.to_csv("student_invalid.csv", index=False)
-    df_soft_early.to_csv("student_early_soft.csv", index=False)
-    df_hard_early.to_csv("student_early_hard.csv", index=False)
-    df_regular.to_csv("student_regular.csv", index=False)
+    df_invalid.to_csv("reglists/student_invalid.csv", index=False)
+    df_soft_early.to_csv("reglists/student_early_soft.csv", index=False)
+    df_hard_early.to_csv("reglists/student_early_hard.csv", index=False)
+    df_regular.to_csv("reglists/student_regular.csv", index=False)
 
     print(
         f"Sorted and saved student registration lists:\n\tInvalid: {len(df_invalid)}\n\tEarly Soft: {len(df_soft_early)}\n\tEarly Hard: {len(df_hard_early)}\n\tRegular: {len(df_regular)}"
