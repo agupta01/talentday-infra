@@ -9,6 +9,7 @@ Then returns four .csv files:
     - student_invalid.csv - students who are ineligible to attend
 """
 
+import json
 import pandas as pd
 import random
 import what3words
@@ -89,6 +90,16 @@ def sort_df(df):
     df_soft_early.to_csv("reglists/student_early_soft.csv", index=False)
     df_hard_early.to_csv("reglists/student_early_hard.csv", index=False)
     df_regular.to_csv("reglists/student_regular.csv", index=False)
+
+    # build checkin code lookup dict
+    checkin_codes = {}
+    dfs = [df_regular, df_soft_early, df_hard_early]
+    for code, df in enumerate(dfs):
+        for _, row in df.iterrows():
+            checkin_codes[row['w3w']] = (row['full_name'], row['email'], row['ds3_member'], row['ucsd_ds'], code)
+    
+    with open('reglists/checkin_codes.json', 'w') as f:
+        json.dump(checkin_codes, f)
 
     print(
         f"Sorted and saved student registration lists:\n\tInvalid: {len(df_invalid)}\n\tEarly Soft: {len(df_soft_early)}\n\tEarly Hard: {len(df_hard_early)}\n\tRegular: {len(df_regular)}"
