@@ -100,6 +100,12 @@ def import_df(filename):
     df = pd.read_csv(filename)
     # Rename the columns to match the scheme defined at the top of the file
     df = df.rename(columns={col: ending_cols[i] for i, col in enumerate(starting_cols)})
+    # Convert submitted_at to datetime
+    df['submitted_at'] = pd.to_datetime(df.submitted_at)
+    # Sort by most recent submission
+    df = df.sort_values(by="submitted_at", ascending=False)
+    # Deduplicate the dataframe, taking the last entry for each email
+    df = df.drop_duplicates(subset="email", keep="first")
     return df
 
 
