@@ -121,7 +121,7 @@ def import_df(filename):
 
 
 def main():
-    FILENAME = "../talentdaystudents_raw_10_7.csv"
+    FILENAME = "../talentdaystudents_raw_10_11.csv"
     df = import_df(FILENAME)
     print(f"Imported {len(df)} student registrations.")
     df = add_w3w_codes(df)
