@@ -1,5 +1,8 @@
 
-const signedIn = [];
+const signedIn = {
+    green: [],
+    orange: [],
+};
 
 function check_code() {
     const resultDiv = document.getElementById('result');
@@ -23,10 +26,12 @@ function check_code() {
                     resultText.innerHTML = "Name: " + userData[0] + "<br>Email: " + userData[1] + "<br>Entry Time: 10am";
                     resultText.style.color = "White";
                     resultDiv.style.backgroundColor = "Green";
+                    signedIn["green"].push(code);
                 } else if (regCode == 1 || regCode == 2) {
                     resultText.innerHTML = "Name: " + userData[0] + "<br>Email: " + userData[1] + "<br>Entry Time: 9am";
                     resultText.style.color = "White";
                     resultDiv.style.backgroundColor = paidDues ? "Green" : "Orange";
+                    (paidDues ? signedIn["green"] : signedIn['orange']).push(code)
                     if (regCode == 2) {
                         alert("This person has hard early entry. If they are not a DS3 member, they will not be allowed to enter.");
                     }
