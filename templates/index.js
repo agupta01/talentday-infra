@@ -19,7 +19,7 @@ function check_code() {
                 userData = json[code];
                 console.log(userData);
                 const regCode = userData[4];
-                const paidDues = file.search(userData[2]) != -1 || file.search(userData[1]) != -1;
+                const paidDues = file.search(userData[0]) != -1 || file.search(userData[1]) != -1;
                 console.log(paidDues);
                 // 0 is regular entry, 1 is soft early entry, 2 is hard early entry
                 if (regCode == 0) {

@@ -16,7 +16,7 @@
         alt="Talent Day Logo" class="logo">
     <h1 id="title">Data Science Talent Day Check-in</h1>
     <p id="description">Enter student's check in code here.</p>
-    <input type="text" id="code" placeholder="Code">
+    <input type="text" id="code" placeholder="Code" onKeyDown="if(event.keyCode==13) check_code();">
     <button id="checkin" onclick="check_code();">Check-in</button>
     <div id="result">
         <p id="result-text">No result yet</p>
